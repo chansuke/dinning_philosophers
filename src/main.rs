@@ -1,8 +1,11 @@
+use std::thread;
+use std::time::Duration;
+
 struct Philosopher {
     name: String,
 }
 
-fn Philosopher() {
+impl Philosopher {
     fn new(name: &str) -> Philosopher {
         Philosopher {
             name: name.to_string(),
@@ -11,19 +14,23 @@ fn Philosopher() {
     
     fn eat(&self) {
         println!("{} is done eating.", self.name);
+
+        thread::sleep(Duration::from_millis(1000));
+
+        println!("{} is done eating.", self.name);
     }
 }
 
 fn main() {
-    let Philosophers = vec![
-        Philosopher::new("Judith Butler");
-        Philosopher::new("Gilles Deleuze");
-        Philosopher::new("Karl Max");
-        Philosopher::new("Emma Goldman");
-        Philosopher::new("Michel Foucault");
+    let philosophers = vec![
+        Philosopher::new("Judith Butler"),
+        Philosopher::new("Gilles Deleuze"),
+        Philosopher::new("Karl Max"),
+        Philosopher::new("Emma Goldman"),
+        Philosopher::new("Michel Foucault"),
     ];
 
-    for p in &Philosophers {
+    for p in &philosophers {
         p.eat();
     }
 }
